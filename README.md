@@ -12,5 +12,11 @@ pip install -r requirements.txt
 ```bash
 flask run
 ```
+
+or
+
+```bash
+flask run
+```
 ## API
 ![](api-postman.png)
