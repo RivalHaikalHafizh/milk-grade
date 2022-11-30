@@ -77,8 +77,8 @@ def logout():
 if __name__ == '__main__':
     models.initialize()   
     # Untuk mode pengembangan
-    app.run(debug=True)
+    # app.run(debug=True)
 
     # Gunakan wsgi server untuk deployment (production)
-    # http_server = gevent.pywsgi.WSGIServer(("127.0.0.1", 80), app)
-    # http_server.serve_forever()
+    http_server = gevent.pywsgi.WSGIServer(("127.0.0.1", 80), app)
+    http_server.serve_forever()

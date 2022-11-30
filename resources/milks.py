@@ -60,7 +60,7 @@ class Milk(MilkBase):
         Odor = args.get('Odor')
         Fat  = args.get('Fat ')
         Turbidity = args.get('Turbidity')
-        pipe = joblib.load('../mental-helps/my_model.pkl')
+        pipe = joblib.load('../milk-grade/my_model.pkl')
         d = {
                 'Temprature': int(Temprature),
                 'Odor': int(Odor),
@@ -68,13 +68,13 @@ class Milk(MilkBase):
                 'Turbidity': int(Turbidity),
             }
         pr = pd.DataFrame(d, index=[0])
-        same_standard_scaler = load('../mental-helps/my-standard-scaler.pkl') 
+        same_standard_scaler = load('../milk-grade/my-standard-scaler.pkl') 
         pr[:] = same_standard_scaler.transform(pr.loc[:])
         pred_cols = list(pr.columns.values)[:]
         # # apply the whole pipeline to data
         pred = pd.Series(pipe.predict(pr[pred_cols]))
         Grade =pred[0]
-        mentals = models.MilkGrade.create(
+        milks = models.MilkGrade.create(
             Temprature=Temprature,
             Odor=Odor,
             Fat=Fat,
